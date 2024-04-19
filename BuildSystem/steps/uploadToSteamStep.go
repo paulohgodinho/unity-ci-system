@@ -2,14 +2,13 @@ package steps
 
 import (
 	"buildsystem/base"
-	"fmt"
 )
 
 type UploadToSteamStep struct {
 }
 
 func (step UploadToSteamStep) Execute(executionContext base.ExecutionContext) int {
-	fmt.Println("Moc uploading to Steam...")
+	base.Printl("Moc uploading to Steam...")
 
 	return 0
 }

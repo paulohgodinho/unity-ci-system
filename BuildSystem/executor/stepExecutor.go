@@ -20,10 +20,9 @@ func ExecuteSteps() {
 	fmt.Println("Starting Steps Execution")
 
 	for _, step := range stepList {
-		fmt.Print("Executing step: ")
-		fmt.Println(step.StepData().Name)
+		base.PrintStepText(fmt.Sprintf("Executing step: %s", step.StepData().Name))
 		step.Execute(executionContext)
-		fmt.Print("Finished executing step")
-		fmt.Print(step.StepData().Name)
+		base.PrintStepText(fmt.Sprintf("Finished step: %s", step.StepData().Name))
+		//base.PrintDelimiter()
 	}
 }

@@ -17,7 +17,7 @@ func (step WaitForSecondsStep) StepData() base.StepData {
 }
 
 func (step WaitForSecondsStep) Execute(executionContext base.ExecutionContext) int {
-	fmt.Printf("Waiting for %v", step.SecondsToWaitFor)
+	base.Printl(fmt.Sprintf("Waiting for %v seconds", step.SecondsToWaitFor))
 	time.Sleep(time.Duration(step.SecondsToWaitFor) * time.Second)
 
 	return 0

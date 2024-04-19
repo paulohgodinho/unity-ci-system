@@ -2,14 +2,13 @@ package steps
 
 import (
 	"buildsystem/base"
-	"fmt"
 )
 
 type SampleStep struct {
 }
 
 func (step SampleStep) Execute(executionContext base.ExecutionContext) int {
-	fmt.Println("Executing Step")
+	base.Printl("Executing Sample Step")
 
 	return 0
 }

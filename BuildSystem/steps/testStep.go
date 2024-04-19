@@ -15,9 +15,9 @@ func (step TestStep) StepData() base.StepData {
 
 func (step TestStep) Execute(executionContext base.ExecutionContext) int {
 
-	fmt.Println("This text came from inside Test Step")
-	fmt.Printf("This build started at %v \n", executionContext.StartedAt)
-	fmt.Println(step.WhatToSay)
+	base.Printl("This text came from inside Test Step")
+	base.Printl(fmt.Sprintf("This build started at %v", executionContext.StartedAt))
+	base.Printl(step.WhatToSay)
 
 	return 0 // All was right
 }

@@ -1,7 +1,7 @@
 Write-Host "--Building for Windows x64"
 $Env:GOOS="windows"
 $Env:GOOSGOARCH="amd64"
-go build -o ./buildSystem.exe
+go build -o ./buildSystem_windows_x64.exe
 
 Write-Host "--Building for Linux x64"
 $Env:GOOS="linux"

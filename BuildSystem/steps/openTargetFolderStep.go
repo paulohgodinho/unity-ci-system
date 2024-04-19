@@ -13,7 +13,7 @@ type OpenTargetFolderStep struct {
 }
 
 func (step OpenTargetFolderStep) Execute(executionContext base.ExecutionContext) int {
-	fmt.Printf("Opening target folder %s \n", step.TargetFolder)
+	base.Printl(fmt.Sprintf("Opening target folder %s", step.TargetFolder))
 	openTargetFolder(step.TargetFolder)
 	return 0
 }
