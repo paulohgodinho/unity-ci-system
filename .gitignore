@@ -73,3 +73,4 @@ crashlytics-build.properties
 .vscode
 .idea
 buildOutput
+BuildSystem/buildsystem.exe
