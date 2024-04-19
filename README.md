@@ -9,7 +9,7 @@ The CI system written in Go that can run any number of steps in sequence, these 
 An integration added to the Unity project makes it easy to build using the CI system but also allows builds from inside Unity to be quick and easy **by leveraging Build Templates** that can be commited to VCS and shared with other developers.
 
 ## CI System
-The CI system can be found in folder `./BuildSystem` an can be started by running your current platform binary, the executable has the following na ing convention `buildSystem_OS_ARCH`, it can be run directly from the command line.
+The CI system can be found in folder `./BuildSystem` an can be started by running your current platform binary, the executable has the following name convention `buildSystem_OS_ARCH`, it can be run directly from the command line. **Pre-built binaries for most common platforms are available in the repo**, if you want to build and distribute, build scripts `build.ps1/sh and buildWithDocker.ps1/sh` are available.
 
 If no step requires human input the pipeline will run its course automatically.
 
@@ -60,3 +60,14 @@ Starting Steps Execution
  >  Finished step: Open Target Step
 Finished, press ENTER to exit...
  ```
+
+ ## Unity Integration
+The Unity integration is a standalone part that can work without the CI system described above.
+
+To access the system reach for the Menu Bar `CI -> Build Tool` to open the custom menu where you can select a platform to build for and a build template.
+<p align="center">
+<img src="./imgs/Unity_BuildTool.png" alt="Building System Windows inside Unity" 
+style="height: 200;"/>
+</p>
+
+**This can be greatelly improved in the future by adding overrides like Development, and Debugger Attachable builds`**
