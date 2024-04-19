@@ -3,7 +3,7 @@ This is a Proof of Concept CI system that has a dedicated step to integrate with
 
 ## Components
 ### CI System
-The CI system written in Go that can run any number of steps in sequence, these steps can use the full power of Go by including any required library from the vast collection provided by Go repositories.
+The CI system is written in Go and can run any number of steps in sequence, these steps can use the full power of Go by including any required library from the vast collection provided by Go repositories.
 
 ### Unity Integration
 An integration added to the Unity project makes it easy to build using the CI system but also allows builds from inside Unity to be quick and easy **by leveraging Build Templates** that can be commited to VCS and shared with other developers.
@@ -62,7 +62,7 @@ Finished, press ENTER to exit...
  ```
 
  ### Authoring Steps
- To create a new step, the user can duplicate the file `steps/sampleStep.go` and start from there. All steps are required to fullfill the interface `base/stepInterface` requirements, two functions only: `Execute` and `StepData`
+ To create a new step, the user can duplicate the file `steps/sampleStep.go` and start from there. All steps are required to fullfill the interface `base/stepInterface` requirements, two functions only: `Execute` and `StepData` need to be implemented
 
  Sample step code:
  ```go
@@ -85,13 +85,13 @@ func (step SampleStep) StepData() base.StepData {
  ## Unity Integration
 The Unity integration is a standalone part that can work without the CI system described above.
 
-To access the system reach for the Menu Bar `CI -> Build Tool` to open the custom menu where you can select a platform to build for and a build template.
+To access the system reach for the Menu Bar `CI -> Build Tool` to open the custom menu, there you can select a platform to build for and a build template.
 <p align="center">
 <img src="./imgs/Unity_BuildTool.png" alt="Building System Window inside Unity" 
 style="height: 200;"/>
 </p>
 
-**This can be greatelly improved in the future by adding overrides like Development, and Debugger Attachable overrides**
+**This can be greatelly improved in the future by adding overrides like Development, Debugger Attachable overrides**, and others based on the developers needs.
 
 ### Templates
 Templates are `Scriptable Objects` containing information required for building the project. Any number of Templates can exist, suiting a variety of required build types. To create a new template, simply copy an existing template and name it accondingly(no spaces allowed). 
@@ -107,7 +107,7 @@ Templates  have a list of scenes that are to be included in the build, only the 
 Templates can have a list of options like `Development Build`, this section can be expanded according to the needs of the development team
 
 #### Defines
-The Defines List allows the user to have a set of defines that will be used during script compilation of the project, **all Defines set in Unity Editor will NOT go into the build**. A text file listing all dDfines is created at `Resources/defines` to query included defines at runtime.
+The Defines List allows the user to have a set of defines that will be used during script compilation of the project, **all Defines set in Unity Editor Player Settings will NOT go into the build**. A text file listing all Defines is created at `Resources/defines` to query included defines at runtime.
 
 ## Building Unity with the CI System
 To build Unity games a dedicated build step was created, it interacts with the template system and allow the user to pick a template to build from.
@@ -154,12 +154,12 @@ The step currently requires the user to add the Unity executable path to the fil
 
 ## Design decisions
 ### Go
-I decided for Go in this project because of its simple syntax and rich library of ready to use modules, you can also target all platforms with ease. A particular module, the Docker one, that is written in Go was also one of the reaons I picked this language, having had a sweet time in the past dealing with Docker in this language. Unfortunatelly I did not have the time to implement the docker features I wanted like pushing to Steam or S3.
+I decided for Go in this project because of its simple syntax and rich library of ready to use modules, you can also target all platforms with ease. A particular module, the Docker one, that is written in Go was also one of the reasons I picked this language, having had a sweet time in the past dealing with Docker in Go. Unfortunatelly I did not have the time to implement the docker features I wanted like pushing to Steam or S3.
 I was able to do much with Go without even touching its advanced features, that leaves a lot of room for improvent in the project.
 
 ### Programable Steps
-For long the industry moved towards `declarative pipelines`, the result is that now we stitch together scripts and the person looking at the pipeline has little to no idea of what is happening due to every step containing  a multitude of scripts that sometime even come from other repositories.
-I liked the idea of having an entire object representing a step, with go the possibilities are limitless, and everything you do will be self contained inside a file that is later added to the pipeline.
+For long the industry moved towards `declarative pipelines`, the result is that now we stitch together scripts and the person looking at the pipeline has little to no idea of what is happening due to every step containing a multitude of scripts that sometime even come from other repositories.
+I liked the idea of having an entire object representing a step, with Go the possibilities are limitless, and everything you do will be self contained inside a file and object that is later added to the pipeline.
 
 ### Missing Pieces
 #### Complete interaction via CLI
@@ -169,4 +169,4 @@ Currently the Unity step requires human interaction, a proper CLI will have to b
 Pipelining is just a series of steps, this series can be encapsulated on its own object and later given as option to the user.
 
 #### Shared State
-There is a `ExecutionContext` object but currently it is not being used to share data in between steps, this can be modified by using this same object, or other context object, that is automatically fed to each step at execution time. This context would be passed around as reference and variables that are written in one step could read/writen from the next steps.
+There is a `ExecutionContext` object but currently it is not being used to share data in between steps, this can be modified by using this same object, or other context object, that is automatically fed to each step at execution time. This context would be passed around as reference and variables that are written in one step could be read/writen from the next steps.
