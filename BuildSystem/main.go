@@ -19,6 +19,7 @@ func main() {
 	executor.SetupExecutor(executionContext)
 
 	executor.AddStep(steps.TestStep{WhatToSay: "Hi I am a Test Step!"})
+	executor.AddStep(steps.BuildUnityGameStep{})
 	executor.AddStep(steps.WaitForSecondsStep{SecondsToWaitFor: 3})
 	executor.AddStep(steps.UploadToSteamStep{})
 	executor.AddStep(steps.UploadToS3Step{})
@@ -29,6 +30,4 @@ func main() {
 
 	fmt.Println("Finished, press ENTER to exit...")
 	fmt.Scanln()
-
-	//executor.AddStep(steps.BuildUnityGameStep{})
 }

@@ -22,32 +22,32 @@ func (step BuildUnityGameStep) Execute(executionContext base.ExecutionContext) i
 		"Linux",
 	}
 
-	fmt.Println("Select Platform:")
+	base.Printl("Select Platform:")
 	for i, item := range platformList {
-		fmt.Printf("%v - %s \n", i, item)
+		base.Printl(fmt.Sprintf("%v - %s", i, item))
 	}
 
 	selectedPlatoformIndex := 0
 	fmt.Scanln(&selectedPlatoformIndex)
-	fmt.Printf("Selected %v \n", selectedPlatoformIndex)
+	base.Printl(fmt.Sprintf("Selected %v", selectedPlatoformIndex))
 
-	fmt.Println("Available Templates")
+	base.Printl("Available Templates")
 	var templateList []string = getAllTemplates()
 	for i, item := range templateList {
-		fmt.Printf("%v - %s \n", i, item)
+		base.Printl(fmt.Sprintf("%v - %s", i, item))
 	}
 
 	selectedTemplateIndex := 0
-	fmt.Println("Select Template:")
+	base.Printl("Select Template:")
 	fmt.Scanln(&selectedTemplateIndex)
-	fmt.Printf("Selected Template: %v", selectedPlatoformIndex)
+	base.Printl(fmt.Sprintf("Selected Template: %v", selectedPlatoformIndex))
 
 	unityPath, error := os.ReadFile("unitypath")
 	if error != nil {
 		log.Fatalln(error)
 	}
 
-	fmt.Printf("Using Unity from: %s \n", unityPath)
+	base.Printl(fmt.Sprintf("Using Unity from: %s", unityPath))
 
 	args := fmt.Sprintf("-batchmode -logFIle - -quit -executeMethod CIBuildTool.DoBuild platform:%s template:%s",
 		platformList[selectedPlatoformIndex],
@@ -59,14 +59,12 @@ func (step BuildUnityGameStep) Execute(executionContext base.ExecutionContext) i
 	cmd.Start()
 
 	scanner := bufio.NewScanner(stderr)
-	//scanner.Split(bufio.ScanWords)
 	for scanner.Scan() {
 		m := scanner.Text()
-		fmt.Println(m)
+		base.Printl(m)
 	}
-	fmt.Println("Waiting")
+
 	cmd.Wait()
-	fmt.Println("Finished Waiting")
 
 	return 0
 }
