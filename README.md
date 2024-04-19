@@ -87,7 +87,7 @@ The Unity integration is a standalone part that can work without the CI system d
 
 To access the system reach for the Menu Bar `CI -> Build Tool` to open the custom menu where you can select a platform to build for and a build template.
 <p align="center">
-<img src="./imgs/Unity_BuildTool.png" alt="Building System Windows inside Unity" 
+<img src="./imgs/Unity_BuildTool.png" alt="Building System Window inside Unity" 
 style="height: 200;"/>
 </p>
 
@@ -96,7 +96,7 @@ style="height: 200;"/>
 ### Templates
 Templates are `Scriptable Objects` containing information required for building the project. Any number of Templates can exist, suiting a variety of required build types. To create a new template, simply copy an existing template and name it accondingly(no spaces allowed). 
 <p align="center">
-<img src="./imgs/Unity_TEmplates.png" alt="Building System Windows inside Unity" 
+<img src="./imgs/Unity_Templates.png" alt="Templates inside Unity" 
 style="height: 400;"/>
 </p>
 
